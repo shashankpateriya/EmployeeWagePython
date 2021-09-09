@@ -1,5 +1,7 @@
 import random
 
+import self as self
+
 
 class EmployeeWage:
 
@@ -14,25 +16,26 @@ class EmployeeWage:
     def employee_attendance(self):
         attendance = random.randint(0, 2)
         if attendance == EmployeeWage.is_full_time:
-            print("Employee is Full time Present with wage " + str(EmployeeWage.full_time_emp_hrs * EmployeeWage.emp_rate_per_hour))
+            print("Employee is Full time Present")
+            EmployeeWage.emp_hrs = EmployeeWage.full_time_emp_hrs
         elif attendance == EmployeeWage.is_half_time:
-            print("Employee is Half time Present with wage " + str(EmployeeWage.half_time_emp_hrs * EmployeeWage.emp_rate_per_hour))
+            print("Employee is Half time Present")
+            EmployeeWage.emp_hrs = EmployeeWage.half_time_emp_hrs
         else:
             print("Employee is absent")
-        return attendance
+            EmployeeWage.emp_hrs = 0
 
 if __name__ == '__main__':
     print("Welcome to Employee Wage Computation Program")
-    employee = EmployeeWage()
     total_emp_wage_for_a_month = 0
-    # is_present = employee.employee_attendance()
+    emp_wage_for_a_month = 0
     day =1
     while day<=20:
-        emp_wage_for_a_month = 0
         print(f"day {day} : ")
-        employee.employee_attendance()
-        emp_wage_for_a_month = employee.full_time_emp_hrs * employee.emp_rate_per_hour
-        total_emp_wage_for_a_month = total_emp_wage_for_a_month + emp_wage_for_a_month
+        EmployeeWage.employee_attendance(self)
+        EmployeeWage.emp_wage = EmployeeWage.emp_rate_per_hour * EmployeeWage.emp_hrs
+        print("Employee salary for day is " + str(EmployeeWage.emp_wage))
+        total_emp_wage_for_a_month = total_emp_wage_for_a_month + EmployeeWage.emp_wage
         day = day + 1
     else:
         print(f"\nEmployee's Salary for the Entire Month is: {total_emp_wage_for_a_month}")
