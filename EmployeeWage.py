@@ -10,7 +10,7 @@ full_time_emp_hrs = 8
 half_time_emp_hrs = 4
 
 
-def employee_attendance():
+def employee_attendance(wage_per_hour,num_of_working_days,work_hours_per_month,company):
     attendance = {
         is_full_time: full_time_emp_hrs,
         is_half_time: half_time_emp_hrs,
@@ -24,8 +24,8 @@ def employee_attendance():
         total_emp_hours = total_emp_hours + attendance.get(checkemp)
         day = day + 1
 
-    return total_emp_hours * emp_rate_per_hour
+    total_emp_wage = total_emp_hours * emp_rate_per_hour
+    print(f"Total wage for company {company} is {total_emp_wage}")
 
-if __name__ == '__main__':
-    total_emp_wage = employee_attendance()
-    print(f"Total wage of employee of a month is {total_emp_wage}")
+employee_attendance(21,25,100,"Unysis")
+employee_attendance(30,35,110,"Airtel")
