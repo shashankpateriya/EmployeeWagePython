@@ -1,8 +1,5 @@
 import random
 
-import self as self
-
-
 class EmployeeWage:
 
     is_half_time = 1
@@ -29,10 +26,12 @@ if __name__ == '__main__':
     print("Welcome to Employee Wage Computation Program")
     total_emp_wage_for_a_month = 0
     emp_wage_for_a_month = 0
+    total_emp_hours = 0
     day =1
-    while day<=20:
+    while ( day < 20 and total_emp_hours < 100):
         print(f"day {day} : ")
-        EmployeeWage.employee_attendance(self)
+        EmployeeWage().employee_attendance()
+        total_emp_hours = total_emp_hours + EmployeeWage.emp_hrs
         EmployeeWage.emp_wage = EmployeeWage.emp_rate_per_hour * EmployeeWage.emp_hrs
         print("Employee salary for day is " + str(EmployeeWage.emp_wage))
         total_emp_wage_for_a_month = total_emp_wage_for_a_month + EmployeeWage.emp_wage
