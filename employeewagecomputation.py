@@ -1,5 +1,6 @@
 import logging
 import random
+import pandas
 from valueoutofbound import ValueOutOfBound
 logging.basicConfig(
     filename="employeewagelogger.log",
@@ -8,6 +9,7 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S"
 )
 log = logging.getLogger()
+
 
 class CompanyWageInfo:
 
@@ -22,8 +24,8 @@ class EmployeeWage:
     is_absent = 0
     is_present = 1
     is_part_time = 2
-    full_day_hours = 8
-    part_time_hours = 4
+    full_day_hours = int(input("Enter full day hours: "))
+    part_time_hours = int(input("Enter half day hours: "))
     company_list = []
 
     def __init__(self, *company):
@@ -53,7 +55,7 @@ class EmployeeWage:
                 total_wage += daily_wage
                 working_days += 1
                 working_hours += employee_working_hours
-            print(f"Total wage of the company {company.name} in the month is {total_wage}")
+            print(f"Employee's salary for company {company.name} in the month is {total_wage}")
         except TypeError:
             print("Input correct naming convention")
         except ValueOutOfBound:
@@ -63,6 +65,7 @@ class EmployeeWage:
         for company in self.company_list:
             self.compute_wage(company)
 
+ 
 if __name__ == '__main__':
     print('Welcome to Employee Wage Computation Program')
     reliance = CompanyWageInfo("reliance", 20, 100, 20)
@@ -72,3 +75,6 @@ if __name__ == '__main__':
 
     companies = EmployeeWage(reliance, bigbazar, flipk, dMart)
     companies.company_emp_wage()
+
+    df = pandas.to_csv("companyinfo.csv")
+    print(df)
